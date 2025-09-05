@@ -9,7 +9,277 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
     <style>
-        :root {
+        /* Blue Archive Splash Screen */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .splash-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .splash-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+            animation: splash-bg-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes splash-bg-pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .splash-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: splash-content-enter 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes splash-content-enter {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) translateY(50px);
+                filter: blur(10px);
+            }
+            60% {
+                opacity: 0.8;
+                transform: scale(1.1) translateY(-10px);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .splash-logo {
+            width: 300px;
+            height: auto;
+            max-width: 80vw;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 10px 30px rgba(59, 130, 246, 0.5));
+            animation: splash-logo-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes splash-logo-glow {
+            0%, 100% {
+                filter: drop-shadow(0 10px 30px rgba(59, 130, 246, 0.5));
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 15px 40px rgba(59, 130, 246, 0.8));
+                transform: scale(1.02);
+            }
+        }
+
+        .splash-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #60a5fa 0%, #06b6d4 50%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(96, 165, 250, 0.5);
+            animation: splash-title-shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes splash-title-shimmer {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+
+        .splash-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            margin-bottom: 40px;
+            animation: splash-subtitle-fade 2s ease-in-out infinite;
+        }
+
+        @keyframes splash-subtitle-fade {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .splash-loading {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .splash-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #60a5fa, #06b6d4);
+            animation: splash-loading 2s ease-in-out infinite;
+            box-shadow: 0 5px 15px rgba(96, 165, 250, 0.4);
+        }
+
+        .splash-dot:nth-child(1) { animation-delay: -0.4s; }
+        .splash-dot:nth-child(2) { animation-delay: -0.2s; }
+        .splash-dot:nth-child(3) { animation-delay: 0s; }
+
+        @keyframes splash-loading {
+            0%, 80%, 100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+                box-shadow: 0 5px 15px rgba(96, 165, 250, 0.2);
+            }
+            40% {
+                opacity: 1;
+                transform: scale(1.3);
+                box-shadow: 0 10px 25px rgba(96, 165, 250, 0.6);
+            }
+        }
+
+        .splash-progress {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            max-width: 80vw;
+        }
+
+        .splash-progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .splash-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #60a5fa, #06b6d4, #10b981);
+            border-radius: 2px;
+            width: 0%;
+            animation: splash-progress 3s ease-out forwards;
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.6);
+        }
+
+        @keyframes splash-progress {
+            0% { width: 0%; }
+            20% { width: 15%; }
+            40% { width: 40%; }
+            70% { width: 75%; }
+            90% { width: 95%; }
+            100% { width: 100%; }
+        }
+
+        .splash-progress-text {
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+        }
+
+        /* Blue Archive particles effect */
+        .splash-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(96, 165, 250, 0.6);
+            border-radius: 50%;
+            animation: particle-float 8s linear infinite;
+        }
+
+        @keyframes particle-float {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) scale(0);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(10vh) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+        }
+
+        /* Main content blur effect */
+        .main-content.blurred {
+            filter: blur(20px);
+            transition: filter 0.8s ease;
+        }
+
+        .nexon-header.blurred {
+            filter: blur(10px);
+            transition: filter 0.8s ease;
+        }
+
+        /* Responsive splash screen */
+        @media (max-width: 768px) {
+            .splash-logo {
+                width: 250px;
+            }
+            
+            .splash-title {
+                font-size: 2rem;
+            }
+            
+            .splash-subtitle {
+                font-size: 1rem;
+            }
+            
+            .splash-progress {
+                bottom: 80px;
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .splash-logo {
+                width: 200px;
+            }
+            
+            .splash-title {
+                font-size: 1.6rem;
+            }
+            
+            .splash-progress {
+                bottom: 60px;
+                width: 200px;
+            }
+        }
             --primary-blue: #1e3a8a;
             --secondary-blue: #3b82f6;
             --light-blue: #60a5fa;
@@ -690,6 +960,34 @@
     </style>
 </head>
 <body>
+    <!-- Blue Archive Splash Screen -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-bg"></div>
+        
+        <!-- Floating particles -->
+        <div class="splash-particles" id="splashParticles"></div>
+        
+        <div class="splash-content">
+            <img src="https://i.ibb.co/vx8zmzGG/1315080.png" alt="Blue Archive Logo" class="splash-logo" id="splashLogo">
+            
+            <h1 class="splash-title">Blue Archive</h1>
+            <p class="splash-subtitle">Bangkok Official Event</p>
+            
+            <div class="splash-loading">
+                <div class="splash-dot"></div>
+                <div class="splash-dot"></div>
+                <div class="splash-dot"></div>
+            </div>
+        </div>
+        
+        <div class="splash-progress">
+            <div class="splash-progress-bar">
+                <div class="splash-progress-fill" id="splashProgressFill"></div>
+            </div>
+            <div class="splash-progress-text" id="splashProgressText">Loading... 0%</div>
+        </div>
+    </div>
+
     <!-- Official Background -->
     <div class="nexon-bg"></div>
 
@@ -808,6 +1106,186 @@
     </main>
 
     <script>
+        // Blue Archive Splash Screen System
+        class BlueArchiveSplashScreen {
+            constructor() {
+                this.splashElement = document.getElementById('splashScreen');
+                this.progressFill = document.getElementById('splashProgressFill');
+                this.progressText = document.getElementById('splashProgressText');
+                this.particlesContainer = document.getElementById('splashParticles');
+                this.mainContent = document.querySelector('.main-content');
+                this.header = document.querySelector('.nexon-header');
+                
+                this.loadingStages = [
+                    { progress: 15, text: 'Initializing Blue Archive System...' },
+                    { progress: 30, text: 'Loading Event Data...' },
+                    { progress: 50, text: 'Connecting to Nexon Servers...' },
+                    { progress: 70, text: 'Preparing Bangkok Event...' },
+                    { progress: 85, text: 'Loading Character Data...' },
+                    { progress: 95, text: 'Finalizing Setup...' },
+                    { progress: 100, text: 'Welcome, Sensei!' }
+                ];
+                
+                this.currentStage = 0;
+                this.isComplete = false;
+            }
+
+            async initialize() {
+                this.createParticles();
+                this.blurBackground();
+                await this.startLoadingSequence();
+                await this.exitSplash();
+            }
+
+            createParticles() {
+                const particleCount = 30;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 8 + 's';
+                    particle.style.animationDuration = (8 + Math.random() * 4) + 's';
+                    
+                    // Random particle colors from Blue Archive palette
+                    const colors = [
+                        'rgba(96, 165, 250, 0.6)',
+                        'rgba(6, 182, 212, 0.5)',
+                        'rgba(16, 185, 129, 0.4)',
+                        'rgba(255, 183, 77, 0.3)'
+                    ];
+                    
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    this.particlesContainer.appendChild(particle);
+                }
+            }
+
+            blurBackground() {
+                if (this.mainContent) this.mainContent.classList.add('blurred');
+                if (this.header) this.header.classList.add('blurred');
+            }
+
+            removeBlurBackground() {
+                if (this.mainContent) this.mainContent.classList.remove('blurred');
+                if (this.header) this.header.classList.remove('blurred');
+            }
+
+            async startLoadingSequence() {
+                return new Promise((resolve) => {
+                    const loadingInterval = setInterval(() => {
+                        if (this.currentStage < this.loadingStages.length) {
+                            const stage = this.loadingStages[this.currentStage];
+                            this.updateProgress(stage.progress, stage.text);
+                            this.currentStage++;
+                        } else {
+                            clearInterval(loadingInterval);
+                            setTimeout(resolve, 800); // Extra pause at 100%
+                        }
+                    }, 600); // 600ms per stage
+                });
+            }
+
+            updateProgress(progress, text) {
+                if (this.progressFill) {
+                    this.progressFill.style.width = progress + '%';
+                }
+                
+                if (this.progressText) {
+                    this.progressText.textContent = text;
+                }
+
+                // Add special effects at certain milestones
+                if (progress === 50) {
+                    this.addLogoGlow();
+                } else if (progress === 100) {
+                    this.addCompletionEffect();
+                }
+            }
+
+            addLogoGlow() {
+                const logo = document.getElementById('splashLogo');
+                if (logo) {
+                    logo.style.filter = 'drop-shadow(0 15px 40px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 60px rgba(6, 182, 212, 0.6))';
+                    logo.style.transform = 'scale(1.05)';
+                }
+            }
+
+            addCompletionEffect() {
+                const splashContent = document.querySelector('.splash-content');
+                if (splashContent) {
+                    splashContent.style.animation = 'splash-content-complete 1s ease-out forwards';
+                }
+                
+                // Add completion keyframe if not exists
+                if (!document.querySelector('#completion-animation')) {
+                    const style = document.createElement('style');
+                    style.id = 'completion-animation';
+                    style.textContent = `
+                        @keyframes splash-content-complete {
+                            0% { transform: scale(1) translateY(0); }
+                            50% { transform: scale(1.1) translateY(-10px); }
+                            100% { transform: scale(1.05) translateY(0); }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+
+            async exitSplash() {
+                return new Promise((resolve) => {
+                    // Add exit animation
+                    this.splashElement.style.animation = 'splash-exit 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+                    
+                    // Add exit keyframe if not exists
+                    if (!document.querySelector('#exit-animation')) {
+                        const style = document.createElement('style');
+                        style.id = 'exit-animation';
+                        style.textContent = `
+                            @keyframes splash-exit {
+                                0% { 
+                                    opacity: 1; 
+                                    transform: scale(1); 
+                                    filter: blur(0px);
+                                }
+                                70% { 
+                                    opacity: 0.3; 
+                                    transform: scale(1.1); 
+                                    filter: blur(5px);
+                                }
+                                100% { 
+                                    opacity: 0; 
+                                    transform: scale(1.2); 
+                                    filter: blur(20px);
+                                    pointer-events: none;
+                                }
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                    
+                    setTimeout(() => {
+                        this.splashElement.classList.add('fade-out');
+                        this.removeBlurBackground();
+                        
+                        setTimeout(() => {
+                            this.splashElement.style.display = 'none';
+                            resolve();
+                        }, 1000);
+                    }, 1500);
+                });
+            }
+        }
+
+        // Initialize Blue Archive Loading System
+        async function initializeBluearchiveSystem() {
+            const splash = new BlueArchiveSplashScreen();
+            await splash.initialize();
+            
+            // After splash, initialize the main event system
+            initializeOfficialEvent();
+            monitorPerformance();
+        }
+
         // Official Event Configuration
         const CONFIG = {
             TARGET_DATE: new Date('2025-11-08T11:00:00+07:00'),
@@ -979,8 +1457,7 @@
 
         // Official Event System Initialization
         document.addEventListener('DOMContentLoaded', () => {
-            initializeOfficialEvent();
-            monitorPerformance();
+            initializeBluearchiveSystem();
         });
 
         // Professional Error Handling
