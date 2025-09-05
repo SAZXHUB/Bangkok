@@ -1,13 +1,27 @@
-
+<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blue Archive Event - บางซื่อ Official Gathering</title>
+    <title>Blue Archive Official - Bangkok Special Event</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
     <style>
+        :root {
+            --primary-blue: #1e3a8a;
+            --secondary-blue: #3b82f6;
+            --light-blue: #60a5fa;
+            --accent-cyan: #06b6d4;
+            --bg-dark: #0f172a;
+            --bg-medium: #1e293b;
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --nexon-orange: #ff6b35;
+            --success-green: #10b981;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,206 +29,254 @@
         }
 
         body {
-            font-family: 'Noto Sans', 'Inter', sans-serif;
-            background: #0a1628;
-            color: white;
+            font-family: 'Inter', 'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
             overflow-x: hidden;
-            position: relative;
+            line-height: 1.6;
         }
 
-        /* Blue Archive authentic background */
-        .bg-container {
+        /* Official Nexon Background */
+        .nexon-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 25%, #2d4f73 50%, #4a6fa5 75%, #6b93d6 100%);
-            z-index: -3;
+            background: linear-gradient(135deg, 
+                #0f172a 0%, 
+                #1e293b 25%, 
+                #334155 50%, 
+                #475569 75%, 
+                #64748b 100%);
+            z-index: -10;
         }
 
-        .bg-pattern {
-            position: fixed;
+        .nexon-bg::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            right: 0;
+            bottom: 0;
             background-image: 
-                radial-gradient(circle at 20% 50%, rgba(107, 147, 214, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(139, 195, 74, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(255, 193, 7, 0.08) 0%, transparent 50%);
-            background-size: 800px 800px;
-            animation: float 20s ease-in-out infinite;
-            z-index: -2;
+                radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                linear-gradient(45deg, transparent 49%, rgba(255, 255, 255, 0.02) 50%, transparent 51%);
+            background-size: 200px 200px, 300px 300px, 50px 50px;
+            animation: drift 30s linear infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(1deg); }
-            66% { transform: translateY(10px) rotate(-1deg); }
+        @keyframes drift {
+            0% { background-position: 0% 0%, 0% 0%, 0% 0%; }
+            100% { background-position: 100% 100%, -100% 100%, 50px 50px; }
         }
 
-        /* Blue Archive hexagon pattern */
-        .hexagon-pattern {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                repeating-linear-gradient(30deg, transparent, transparent 10px, rgba(107, 147, 214, 0.05) 10px, rgba(107, 147, 214, 0.05) 20px),
-                repeating-linear-gradient(-30deg, transparent, transparent 10px, rgba(139, 195, 74, 0.03) 10px, rgba(139, 195, 74, 0.03) 20px);
-            z-index: -1;
-        }
-
-        /* Header Navigation (Blue Archive style) */
-        .header-nav {
+        /* Official Nexon Header */
+        .nexon-header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(10, 22, 40, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(107, 147, 214, 0.2);
-            padding: 12px 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 0;
             z-index: 1000;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
         }
 
-        .nav-container {
-            max-width: 1200px;
+        .header-container {
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 16px 24px;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #6b93d6;
+        .nexon-logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
             text-decoration: none;
         }
 
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-item {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-item:hover {
-            color: #6b93d6;
-        }
-
-        .nav-item.active::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #6b93d6;
-            border-radius: 1px;
-        }
-
-        /* Main Content Container */
-        .main-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 100px 20px 50px;
-            position: relative;
-        }
-
-        /* Blue Archive style title section */
-        .title-section {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-        }
-
-        .main-title {
-            font-size: 4rem;
+        .nexon-logo-text {
+            font-size: 1.8rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #6b93d6 0%, #4fc3f7 50%, #81c784 100%);
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--accent-cyan) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 20px;
-            text-shadow: 0 0 30px rgba(107, 147, 214, 0.3);
+            letter-spacing: -0.025em;
+        }
+
+        .nexon-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-top: -4px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--secondary-blue);
+            background: rgba(59, 130, 246, 0.15);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 3px;
+            background: var(--secondary-blue);
+            border-radius: 2px;
+        }
+
+        /* Main Content */
+        .main-content {
+            min-height: 100vh;
+            padding: 120px 24px 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Official Event Banner */
+        .official-banner {
+            text-align: center;
+            margin-bottom: 64px;
+            position: relative;
+        }
+
+        .official-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--nexon-orange) 0%, #ff8f65 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+        }
+
+        .event-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, 
+                var(--secondary-blue) 0%, 
+                var(--light-blue) 30%, 
+                var(--accent-cyan) 70%, 
+                #38bdf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
             letter-spacing: -0.02em;
-            line-height: 0.9;
+            line-height: 0.95;
+            text-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
         }
 
-        .subtitle {
-            font-size: 1.8rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 300;
-            margin-bottom: 10px;
-        }
-
-        .tagline {
-            font-size: 1rem;
-            color: rgba(107, 147, 214, 0.8);
+        .event-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
             font-weight: 400;
-            font-style: italic;
+            margin-bottom: 12px;
         }
 
-        /* Blue Archive authentic event card */
-        .event-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-            backdrop-filter: blur(30px);
-            border-radius: 24px;
-            border: 1px solid rgba(107, 147, 214, 0.3);
+        .official-tagline {
+            font-size: 1.1rem;
+            color: var(--light-blue);
+            font-weight: 500;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Professional Event Card */
+        .event-container {
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.08) 0%, 
+                rgba(255, 255, 255, 0.03) 100%);
+            backdrop-filter: blur(32px);
+            border-radius: 32px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 32px 64px rgba(0, 0, 0, 0.25),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1),
-                0 0 60px rgba(107, 147, 214, 0.1);
-            max-width: 800px;
+                0 0 0 1px rgba(59, 130, 246, 0.05);
+            max-width: 1000px;
             width: 100%;
-            padding: 50px;
+            padding: 64px;
             position: relative;
             overflow: hidden;
         }
 
-        .event-card::before {
+        .event-container::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #6b93d6, #4fc3f7, #81c784, #ffb74d, #f06292);
-            background-size: 300% 100%;
-            animation: rainbow-flow 4s linear infinite;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--secondary-blue) 0%, 
+                var(--light-blue) 25%, 
+                var(--accent-cyan) 50%, 
+                var(--success-green) 75%, 
+                var(--nexon-orange) 100%);
+            background-size: 400% 100%;
+            animation: official-gradient 6s linear infinite;
         }
 
-        @keyframes rainbow-flow {
+        @keyframes official-gradient {
             0% { background-position: 0% 50%; }
-            100% { background-position: 300% 50%; }
+            100% { background-position: 400% 50%; }
         }
 
-        /* Countdown Grid */
-        .countdown-wrapper {
+        /* Countdown Section */
+        .countdown-section {
             text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .countdown-header {
             margin-bottom: 40px;
         }
 
         .countdown-title {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #6b93d6;
-            margin-bottom: 30px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
             position: relative;
             display: inline-block;
         }
@@ -225,412 +287,555 @@
             bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, #6b93d6, #4fc3f7);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary-blue), var(--accent-cyan));
+            border-radius: 2px;
         }
 
-        .countdown-grid {
+        .countdown-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Professional Timer Grid */
+        .timer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin: 40px 0;
+            gap: 24px;
+            margin: 48px 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .time-card {
-            background: linear-gradient(135deg, rgba(107, 147, 214, 0.15) 0%, rgba(79, 195, 247, 0.1) 100%);
-            border: 1px solid rgba(107, 147, 214, 0.3);
-            border-radius: 20px;
-            padding: 30px 20px;
+        .timer-card {
+            background: linear-gradient(135deg, 
+                rgba(59, 130, 246, 0.1) 0%, 
+                rgba(6, 182, 212, 0.08) 100%);
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            border-radius: 24px;
+            padding: 32px 24px;
             text-align: center;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
         }
 
-        .time-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(107, 147, 214, 0.1), transparent);
-            transform: rotate(-45deg);
-            transition: all 0.6s ease;
-            opacity: 0;
-        }
-
-        .time-card:hover::before {
-            animation: shimmer-sweep 1s ease-in-out;
-        }
-
-        @keyframes shimmer-sweep {
-            0% { transform: translateX(-100%) rotate(-45deg); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateX(100%) rotate(-45deg); opacity: 0; }
-        }
-
-        .time-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(107, 147, 214, 0.2);
-            border-color: rgba(107, 147, 214, 0.5);
-        }
-
-        .time-number {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: white;
-            display: block;
-            line-height: 1;
-            margin-bottom: 12px;
-            text-shadow: 0 4px 12px rgba(107, 147, 214, 0.4);
-        }
-
-        .time-label {
-            font-size: 1rem;
-            color: rgba(107, 147, 214, 0.9);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Event Info Section */
-        .event-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .info-card {
-            background: linear-gradient(135deg, rgba(129, 199, 132, 0.15) 0%, rgba(139, 195, 74, 0.1) 100%);
-            border: 1px solid rgba(129, 199, 132, 0.3);
-            border-radius: 16px;
-            padding: 25px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .info-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(129, 199, 132, 0.2);
-        }
-
-        .info-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .info-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #81c784;
-            margin-bottom: 8px;
-        }
-
-        .info-text {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-        }
-
-        /* GPS Navigation Button */
-        .nav-button {
-            background: linear-gradient(135deg, #6b93d6 0%, #4fc3f7 100%);
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            box-shadow: 0 8px 24px rgba(107, 147, 214, 0.3);
-            position: relative;
-            overflow: hidden;
-            margin-top: 30px;
-        }
-
-        .nav-button::before {
+        .timer-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(59, 130, 246, 0.1), 
+                transparent);
+            transition: left 0.8s ease;
         }
 
-        .nav-button:hover::before {
+        .timer-card:hover {
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 24px 48px rgba(59, 130, 246, 0.25);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .timer-card:hover::before {
             left: 100%;
         }
 
-        .nav-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 32px rgba(107, 147, 214, 0.4);
-            background: linear-gradient(135deg, #4fc3f7 0%, #6b93d6 100%);
+        .timer-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            display: block;
+            line-height: 1;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+            font-family: 'Inter', monospace;
         }
 
-        .nav-button:active {
-            transform: translateY(-1px) scale(1.02);
+        .timer-label {
+            font-size: 1rem;
+            color: var(--light-blue);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Celebration animation for when countdown ends */
-        .celebration {
-            text-align: center;
-            padding: 60px 40px;
-            background: linear-gradient(135deg, rgba(129, 199, 132, 0.2) 0%, rgba(255, 193, 7, 0.15) 100%);
-            border: 2px solid rgba(129, 199, 132, 0.4);
+        /* Event Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin: 48px 0;
+        }
+
+        .detail-card {
+            background: linear-gradient(135deg, 
+                rgba(16, 185, 129, 0.1) 0%, 
+                rgba(6, 182, 212, 0.08) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.2);
             border-radius: 20px;
-            animation: celebrate 2s ease-in-out infinite;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes celebrate {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.02) rotate(0.5deg); }
-            75% { transform: scale(1.02) rotate(-0.5deg); }
+        .detail-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.3);
         }
 
-        .celebration-text {
+        .detail-icon {
             font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #81c784, #ffb74d, #f06292);
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(16, 185, 129, 0.2));
+        }
+
+        .detail-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--success-green);
+            margin-bottom: 12px;
+        }
+
+        .detail-text {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Official Action Buttons */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--light-blue) 100%);
+            color: white;
+            border: none;
+            padding: 20px 48px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+            min-width: 280px;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #1877f2 0%, #42a5f5 100%);
+            box-shadow: 0 12px 32px rgba(24, 119, 242, 0.3);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 16px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 16px 40px rgba(24, 119, 242, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .btn-icon {
+            font-size: 1.3em;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Celebration Mode */
+        .celebration-mode {
+            text-align: center;
+            padding: 80px 48px;
+            background: linear-gradient(135deg, 
+                rgba(16, 185, 129, 0.15) 0%, 
+                rgba(255, 193, 7, 0.12) 50%,
+                rgba(244, 63, 94, 0.1) 100%);
+            border: 3px solid rgba(16, 185, 129, 0.3);
+            border-radius: 32px;
+            animation: celebration-pulse 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes celebration-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(16, 185, 129, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 0 32px rgba(16, 185, 129, 0.4); }
+        }
+
+        .celebration-title {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, 
+                var(--success-green) 0%, 
+                #fbbf24 50%, 
+                #f97316 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            text-shadow: 0 0 32px rgba(16, 185, 129, 0.3);
         }
 
-        .celebration-subtitle {
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 400;
+        .celebration-text {
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            opacity: 0.95;
         }
 
-        /* Footer */
-        .footer {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(107, 147, 214, 0.2);
+        /* Professional Footer */
+        .official-footer {
+            margin-top: 64px;
+            padding: 48px 0 32px;
+            border-top: 1px solid rgba(59, 130, 246, 0.15);
             text-align: center;
-            color: rgba(255, 255, 255, 0.6);
+            background: linear-gradient(135deg, 
+                rgba(15, 23, 42, 0.8) 0%, 
+                rgba(30, 41, 59, 0.6) 100%);
+            backdrop-filter: blur(16px);
+            border-radius: 24px 24px 0 0;
         }
 
-        .footer-tagline {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            color: rgba(107, 147, 214, 0.8);
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .official-tagline-footer {
+            font-size: 1.4rem;
+            color: var(--light-blue);
+            font-weight: 600;
+            margin-bottom: 16px;
             font-style: italic;
         }
 
-        .coordinates {
-            font-size: 0.9rem;
+        .nexon-copyright {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .coordinates-info {
+            font-size: 0.95rem;
+            color: rgba(156, 163, 175, 0.8);
             font-family: 'Courier New', monospace;
-            color: rgba(255, 255, 255, 0.5);
+            background: rgba(59, 130, 246, 0.05);
+            padding: 12px 24px;
+            border-radius: 12px;
+            display: inline-block;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        /* Professional Loading Animation */
+        .loading-animation {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 32px 0;
+        }
+
+        .loading-circle {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--secondary-blue);
+            animation: professional-loading 2s ease-in-out infinite;
+        }
+
+        .loading-circle:nth-child(1) { animation-delay: -0.4s; }
+        .loading-circle:nth-child(2) { animation-delay: -0.2s; }
+        .loading-circle:nth-child(3) { animation-delay: 0s; }
+
+        @keyframes professional-loading {
+            0%, 80%, 100% { 
+                opacity: 0.3; 
+                transform: scale(0.8); 
+            }
+            40% { 
+                opacity: 1; 
+                transform: scale(1.2); 
+            }
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .main-title {
-                font-size: 2.5rem;
+        @media (max-width: 1024px) {
+            .event-container {
+                padding: 48px 32px;
             }
-
-            .event-card {
-                padding: 30px 25px;
-                margin: 0 15px;
-            }
-
-            .countdown-grid {
+            
+            .timer-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-
-            .time-number {
-                font-size: 2.5rem;
-            }
-
-            .nav-menu {
-                display: none;
-            }
-
-            .info-card {
-                padding: 20px;
+                gap: 20px;
             }
         }
 
-        @media (max-width: 480px) {
-            .main-title {
-                font-size: 2rem;
+        @media (max-width: 768px) {
+            .header-nav {
+                display: none;
             }
-
-            .subtitle {
-                font-size: 1.4rem;
+            
+            .event-title {
+                font-size: 3rem;
             }
-
-            .time-number {
-                font-size: 2rem;
+            
+            .event-container {
+                margin: 0 16px;
+                padding: 40px 24px;
             }
-
-            .event-card {
-                padding: 25px 20px;
+            
+            .timer-number {
+                font-size: 3rem;
             }
-
-            .nav-button {
-                padding: 16px 32px;
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .action-buttons {
+                gap: 16px;
+            }
+            
+            .btn-primary {
+                min-width: 240px;
+                padding: 18px 36px;
                 font-size: 1.1rem;
             }
         }
 
-        /* Loading animation */
-        .loading-indicator {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin: 20px 0;
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 100px 16px 60px;
+            }
+            
+            .event-title {
+                font-size: 2.2rem;
+            }
+            
+            .timer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            
+            .timer-number {
+                font-size: 2.5rem;
+            }
+            
+            .timer-card {
+                padding: 24px 16px;
+            }
+            
+            .celebration-title {
+                font-size: 2.8rem;
+            }
         }
 
-        .loading-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #6b93d6;
-            animation: loading-pulse 1.5s ease-in-out infinite;
+        /* Performance optimizations */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        .loading-dot:nth-child(1) { animation-delay: -0.3s; }
-        .loading-dot:nth-child(2) { animation-delay: -0.15s; }
-        .loading-dot:nth-child(3) { animation-delay: 0s; }
+        .timer-number {
+            will-change: transform;
+        }
 
-        @keyframes loading-pulse {
-            0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
-            40% { opacity: 1; transform: scale(1.2); }
+        .btn-primary {
+            will-change: transform, box-shadow;
         }
     </style>
 </head>
 <body>
-    <!-- Background layers -->
-    <div class="bg-container"></div>
-    <div class="bg-pattern"></div>
-    <div class="hexagon-pattern"></div>
+    <!-- Official Background -->
+    <div class="nexon-bg"></div>
 
-    <!-- Header Navigation -->
-    <header class="header-nav">
-        <div class="nav-container">
-            <a href="#" class="logo">Blue Archive Events</a>
-            <nav class="nav-menu">
-                <a href="#" class="nav-item">Home</a>
-                <a href="#" class="nav-item active">Events</a>
-                <a href="#" class="nav-item">News</a>
-                <a href="#" class="nav-item">Characters</a>
-                <a href="#" class="nav-item">Community</a>
+    <!-- Official Header -->
+    <header class="nexon-header">
+        <div class="header-container">
+            <a href="#" class="nexon-logo">
+                <div>
+                    <div class="nexon-logo-text">Blue Archive</div>
+                    <div class="nexon-subtitle">Official Event Portal</div>
+                </div>
+            </a>
+            <nav class="header-nav">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link active">Events</a>
+                <a href="#" class="nav-link">News</a>
+                <a href="#" class="nav-link">Characters</a>
+                <a href="#" class="nav-link">Community</a>
+                <a href="#" class="nav-link">Download</a>
             </nav>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="main-container">
-        <!-- Title Section -->
-        <div class="title-section">
-            <h1 class="main-title">Special Event</h1>
-            <h2 class="subtitle">Bangkok Gathering</h2>
-            <p class="tagline">Our Story Together, Blue Archive</p>
-        </div>
+    <main class="main-content">
+        <!-- Official Event Banner -->
+        <section class="official-banner">
+            <div class="official-badge">Official Nexon Event</div>
+            <h1 class="event-title">Bangkok Special Event</h1>
+            <p class="event-subtitle">Sensei Gathering 2025</p>
+            <p class="official-tagline">"Our Story Together, Blue Archive"</p>
+        </section>
 
-        <!-- Event Card -->
-        <div class="event-card">
-            <div class="countdown-wrapper">
-                <h3 class="countdown-title">Event Countdown</h3>
-                
-                <div id="countdown" class="countdown-grid">
-                    <div class="time-card">
-                        <span id="days" class="time-number">00</span>
-                        <div class="time-label">Days</div>
-                    </div>
-                    <div class="time-card">
-                        <span id="hours" class="time-number">00</span>
-                        <div class="time-label">Hours</div>
-                    </div>
-                    <div class="time-card">
-                        <span id="minutes" class="time-number">00</span>
-                        <div class="time-label">Minutes</div>
-                    </div>
-                    <div class="time-card">
-                        <span id="seconds" class="time-number">00</span>
-                        <div class="time-label">Seconds</div>
-                    </div>
+        <!-- Professional Event Container -->
+        <div class="event-container">
+            <!-- Countdown Section -->
+            <section class="countdown-section">
+                <div class="countdown-header">
+                    <h2 class="countdown-title">Event Countdown</h2>
+                    <p class="countdown-subtitle">Time until the official gathering begins</p>
                 </div>
-            </div>
 
-            <!-- Event Information -->
-            <div class="event-info">
-                <div class="info-card">
-                    <span class="info-icon">📅</span>
-                    <div class="info-title">Date</div>
-                    <div class="info-text">November 8, 2025</div>
+                <div id="countdown" class="timer-grid">
+                    <div class="timer-card">
+                        <span id="days" class="timer-number">00</span>
+                        <div class="timer-label">Days</div>
+                    </div>
+                    <div class="timer-card">
+                        <span id="hours" class="timer-number">00</span>
+                        <div class="timer-label">Hours</div>
+                    </div>
+                    <div class="timer-card">
+                        <span id="minutes" class="timer-number">00</span>
+                        <div class="timer-label">Minutes</div>
+                    </div>
+                    <div class="timer-card">
+                        <span id="seconds" class="timer-number">00</span>
+                        <div class="timer-label">Seconds</div>
+                    </div>
                 </div>
-                <div class="info-card">
-                    <span class="info-icon">🕐</span>
-                    <div class="info-title">Time</div>
-                    <div class="info-text">11:00 AM (ICT)</div>
-                </div>
-                <div class="info-card">
-                    <span class="info-icon">📍</span>
-                    <div class="info-title">Location</div>
-                    <div class="info-text">Bang Sue, Bangkok</div>
-                </div>
-            </div>
+            </section>
 
-            <!-- Navigation Button -->
-            <div style="text-align: center;">
-                <button class="nav-button" onclick="openGPS()">
-                    <span>🎯</span>
+            <!-- Event Details -->
+            <section class="details-grid">
+                <div class="detail-card">
+                    <span class="detail-icon">📅</span>
+                    <h3 class="detail-title">Event Date</h3>
+                    <p class="detail-text">November 8, 2025</p>
+                </div>
+                <div class="detail-card">
+                    <span class="detail-icon">🕐</span>
+                    <h3 class="detail-title">Start Time</h3>
+                    <p class="detail-text">11:00 AM (ICT+7)</p>
+                </div>
+                <div class="detail-card">
+                    <span class="detail-icon">📍</span>
+                    <h3 class="detail-title">Location</h3>
+                    <p class="detail-text">Bang Sue, Bangkok</p>
+                </div>
+            </section>
+
+            <!-- Official Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn-primary" onclick="openGPS()">
+                    <span class="btn-icon">🎯</span>
                     Navigate to Event Location
                 </button>
+                
+                <a href="https://www.facebook.com/share/1HdVaDgkqo/" target="_blank" class="btn-primary btn-secondary">
+                    <span class="btn-icon">📘</span>
+                    View Official Announcement
+                </a>
             </div>
 
-            <!-- Loading Indicator -->
-            <div class="loading-indicator">
-                <div class="loading-dot"></div>
-                <div class="loading-dot"></div>
-                <div class="loading-dot"></div>
+            <!-- Professional Loading Animation -->
+            <div class="loading-animation">
+                <div class="loading-circle"></div>
+                <div class="loading-circle"></div>
+                <div class="loading-circle"></div>
             </div>
-
-            <!-- Footer -->
-            <footer class="footer">
-                <div class="footer-tagline">"A story kept within the heart"</div>
-                <div class="coordinates">Coordinates: 13°48'18"N, 100°32'30"E</div>
-            </footer>
         </div>
+
+        <!-- Official Footer -->
+        <footer class="official-footer">
+            <div class="footer-content">
+                <div class="official-tagline-footer">"Our Story Together, Blue Archive"</div>
+                <div class="nexon-copyright">
+                    © 2025 NEXON Games Co., Ltd. & MX Studio. All Rights Reserved.<br>
+                    Blue Archive Official Bangkok Event
+                </div>
+                <div class="coordinates-info">
+                    Event Coordinates: 13°48'18"N, 100°32'30"E
+                </div>
+            </div>
+        </footer>
     </main>
 
     <script>
-        // Target date and time (November 8, 2025, 11:00 AM ICT)
-        const targetDate = new Date('2025-11-08T11:00:00+07:00');
-        let lastSecond = -1;
+        // Official Event Configuration
+        const CONFIG = {
+            TARGET_DATE: new Date('2025-11-08T11:00:00+07:00'),
+            COORDINATES: {
+                lat: 13.805,
+                lng: 100.541667
+            },
+            ANIMATION_DURATION: 200
+        };
 
-        // GPS navigation function
+        let previousSecond = -1;
+
+        // Professional GPS Navigation
         function openGPS() {
-            const latitude = 13.805; // 13°48'18"N
-            const longitude = 100.541667; // 100°32'30"E
+            const button = event.target.closest('.btn-primary');
             
-            // Button click animation
-            const button = event.target.closest('.nav-button');
-            button.style.transform = 'scale(0.95) translateY(-1px)';
+            // Professional button feedback
+            button.style.transform = 'scale(0.96) translateY(-2px)';
             setTimeout(() => {
-                button.style.transform = 'translateY(-3px) scale(1.05)';
-            }, 150);
-            
-            const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+                button.style.transform = 'translateY(-4px) scale(1.05)';
+            }, CONFIG.ANIMATION_DURATION);
+
+            const { lat, lng } = CONFIG.COORDINATES;
+            const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             
             if (isMobile) {
-                const mapsUrl = `maps:${latitude},${longitude}`;
+                const mapsUrl = `maps:${lat},${lng}`;
                 window.open(mapsUrl);
                 setTimeout(() => {
                     window.open(googleMapsUrl, '_blank');
@@ -640,87 +845,168 @@
             }
         }
 
-        // Countdown update function
+        // Professional Countdown System
         function updateCountdown() {
             const now = new Date().getTime();
-            const distance = targetDate - now;
+            const distance = CONFIG.TARGET_DATE - now;
 
             if (distance > 0) {
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                const timeUnits = {
+                    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+                    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                    seconds: Math.floor((distance % (1000 * 60)) / 1000)
+                };
 
-                // Update display with animation
-                updateTimeDisplay('days', days);
-                updateTimeDisplay('hours', hours);
-                updateTimeDisplay('minutes', minutes);
-                updateTimeDisplay('seconds', seconds);
+                // Update display with professional formatting
+                Object.entries(timeUnits).forEach(([unit, value]) => {
+                    updateTimeDisplay(unit, value);
+                });
 
-                // Special animation for seconds
-                if (seconds !== lastSecond) {
-                    animateTimeChange('seconds');
-                    lastSecond = seconds;
+                // Professional second animation
+                if (timeUnits.seconds !== previousSecond) {
+                    animateSecondChange();
+                    previousSecond = timeUnits.seconds;
                 }
             } else {
-                // Event has started
-                document.getElementById('countdown').innerHTML = `
-                    <div class="celebration" style="grid-column: 1/-1;">
-                        <div class="celebration-text">🎉 Event Started! 🎉</div>
-                        <div class="celebration-subtitle">Welcome to Blue Archive Bangkok Gathering!</div>
+                displayEventStart();
+            }
+        }
+
+        // Professional Time Display Update
+        function updateTimeDisplay(unit, value) {
+            const element = document.getElementById(unit);
+            if (element) {
+                const formattedValue = value.toString().padStart(2, '0');
+                element.textContent = formattedValue;
+            }
+        }
+
+        // Professional Second Animation
+        function animateSecondChange() {
+            const secondsElement = document.getElementById('seconds');
+            if (secondsElement) {
+                secondsElement.style.transform = 'scale(1.1)';
+                secondsElement.style.color = 'var(--accent-cyan)';
+                
+                setTimeout(() => {
+                    secondsElement.style.transform = 'scale(1)';
+                    secondsElement.style.color = 'var(--text-primary)';
+                }, CONFIG.ANIMATION_DURATION);
+            }
+        }
+
+        // Event Started Display
+        function displayEventStart() {
+            const countdownElement = document.getElementById('countdown');
+            if (countdownElement) {
+                countdownElement.innerHTML = `
+                    <div class="celebration-mode" style="grid-column: 1/-1;">
+                        <div class="celebration-title">🎉 Event Started! 🎉</div>
+                        <div class="celebration-text">
+                            Welcome to Blue Archive Bangkok Official Event!<br>
+                            <small style="font-size: 1.2rem; opacity: 0.8; margin-top: 16px; display: block;">
+                                Sensei, let's create our story together!
+                            </small>
+                        </div>
                     </div>
                 `;
             }
         }
 
-        // Update time display with formatting
-        function updateTimeDisplay(elementId, value) {
-            const element = document.getElementById(elementId);
-            const formattedValue = value.toString().padStart(2, '0');
-            element.textContent = formattedValue;
-        }
-
-        // Animate time change
-        function animateTimeChange(elementId) {
-            const element = document.getElementById(elementId);
-            element.style.transform = 'scale(1.15)';
-            element.style.color = '#4fc3f7';
-            setTimeout(() => {
-                element.style.transform = 'scale(1)';
-                element.style.color = 'white';
-            }, 200);
-        }
-
-        // Smooth page load animation
-        window.addEventListener('load', function() {
+        // Professional Page Initialization
+        function initializeOfficialEvent() {
+            // Smooth page load
             document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.8s ease';
+            document.body.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            
             setTimeout(() => {
                 document.body.style.opacity = '1';
             }, 100);
-        });
 
-        // Add hover effects to time cards
-        document.querySelectorAll('.time-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
-            });
+            // Initialize countdown
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            // Professional timer card interactions
+            initializeTimerCardEffects();
             
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
+            // Log official event system
+            logOfficialEventInfo();
+        }
+
+        // Timer Card Professional Effects
+        function initializeTimerCardEffects() {
+            document.querySelectorAll('.timer-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-12px) scale(1.05)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
             });
+        }
+
+        // Official Event System Logging
+        function logOfficialEventInfo() {
+            console.log('🎯 Blue Archive Official Event System Initialized');
+            console.log('📅 Current Time:', new Date().toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' }));
+            console.log('🎯 Target Event Time:', CONFIG.TARGET_DATE.toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' }));
+            console.log('📍 Event Coordinates:', `${CONFIG.COORDINATES.lat}°N, ${CONFIG.COORDINATES.lng}°E`);
+            console.log('🏢 Powered by NEXON Games Co., Ltd.');
+            console.log('💫 "Our Story Together, Blue Archive"');
+        }
+
+        // Professional Performance Monitoring
+        function monitorPerformance() {
+            if (window.performance && window.performance.mark) {
+                window.performance.mark('blue-archive-event-start');
+                
+                window.addEventListener('load', () => {
+                    window.performance.mark('blue-archive-event-loaded');
+                    
+                    if (window.performance.measure) {
+                        window.performance.measure(
+                            'blue-archive-load-time',
+                            'blue-archive-event-start',
+                            'blue-archive-event-loaded'
+                        );
+                    }
+                });
+            }
+        }
+
+        // Official Event System Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeOfficialEvent();
+            monitorPerformance();
         });
 
-        // Initialize countdown
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+        // Professional Error Handling
+        window.addEventListener('error', (event) => {
+            console.error('Blue Archive Official Event Error:', event.error);
+        });
 
-        // Console logs for debugging
-        console.log('🎯 Blue Archive Official Event System');
-        console.log('📅 Current Time:', new Date());
-        console.log('🎯 Target Time:', targetDate);
-        console.log('🌐 User Agent:', navigator.userAgent);
-        console.log('💫 Our Story Together, Blue Archive');
+        // Professional Visibility Change Handling
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                updateCountdown();
+            }
+        });
+
+        // Professional Resize Handling
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Re-optimize layouts if needed
+                const timerCards = document.querySelectorAll('.timer-card');
+                timerCards.forEach(card => {
+                    card.style.transform = 'translateY(0) scale(1)';
+                });
+            }, 250);
+        });
     </script>
 </body>
 </html>
