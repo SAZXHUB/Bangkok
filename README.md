@@ -1380,11 +1380,11 @@
             if (countdownElement) {
                 countdownElement.innerHTML = `
                     <div class="celebration-mode" style="grid-column: 1/-1;">
-                        <div class="celebration-title">🎉 Event Started! 🎉</div>
+                        <div class="celebration-title">✨ Event Timeout! ✨</div>
                         <div class="celebration-text">
-                            Welcome to Blue Archive Bangkok Official Event!<br>
+                            The Event Schale Fest Bangkok Is timeout (20:00)!<br>
                             <small style="font-size: 1.2rem; opacity: 0.8; margin-top: 16px; display: block;">
-                                Sensei, let's create our story together!
+                                Thank you, Sensei, for participating in this event. It's something Arona loves so much. Thank you from the bottom of my heart!
                             </small>
                         </div>
                     </div>
